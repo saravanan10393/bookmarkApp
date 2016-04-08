@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="modal-header">
+    <h3 class="modal-title">Choose a folder</h3>
+    <button class="pull-right" ng-click="close()">X</button>
+</div>
+<div class="modal-body">
+    <div ng-repeat="folder in folders">
+        <i class="folder-o"></i>
+        <a href="#" ng-click="$event.preventDefault(); addToFolder(folder)">{{folder.name}}</a>
+    </div>
+</div>
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="bookmarkApp" ng-cloak>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="./bower_components/ngToast/dist/ngToast.min.css">
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        
+        <!-- lib files -->
+        <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <script src="./bower_components/angular/angular.min.js"></script>
+        <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="./bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="./bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+        <script src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <script src="./bower_components/underscore/underscore-min.js"></script>
+        <script src="./bower_components/ngToast/dist/ngToast.min.js"></script>
+        <!-- app content -->
+        <script src="./javascripts/app.js"></script>
+        <script src="./javascripts/appconfig.js"></script>
+        <script src="./javascripts/modules/bookmarks/bookmarkcontroller.js"></script>
+        <script src="./javascripts/modules/bookmarks/bookmarkFactory.js"></script>
+        <script src="./javascripts/modules/bookmarks/iconDirective.js"></script>
+    </head>
+    <body class="container-fluid" ng-controller="bookmarkCtrl">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Bookmark Manager</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#" ng-click="createBookmark()">New Bookmark</a></li>
+                    <li><a href="#" ng-click="createFolder()">New Folder</a></li>
+                </ul>
+            </div>
+            
+        </nav>
+        <div>
+            <ol class="breadcrumb">
+                <li ng-repeat="cum in breadCum" ng-class="{active:$last}"><a href="javascript:void(0)" ng-click="getFolderContent(cum)">{{cum.name}}</a></li>
+            </ol>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-xs-3 col-sm-3 bookmark" ng-repeat="bookmark in allBookmarks| orderBy : isFolder" ng-hide="allBookmarks.length == 0">
+                <icon class="bookmark-icon" isfolder="bookmark.isFolder"></icon>
+                <h4 class="bookmark-name" ng-bind="bookmark.name"></h4>
+                <hr>
+                <div class="actions row">
+                    <div class="col-md-6 col-sm-6 col-xs-6" ng-hide="bookmark.isFolder"><a href="javascript:void(0)" class="btn btn-block" ng-click="addToFolder(bookmark.id)">Add to folder</a></div>
+                    <div class="col-md-6 col-sm-6 col-xs-6" ng-show="bookmark.isFolder"><a href="javascript:void(0)" class="btn btn-block" ng-click="getFolderContent(bookmark)">View</a></div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 delete-btn"><a href="javascript:void(0)" class="btn btn-danger" ng-click="bookmark.isFolder ? deleteFolder(bookmark.id) : deleteBookmark(bookmark.id)">Delete</a></div>
+                </div>
+            </div>
+            <div class="center-content" ng-show="allBookmarks.length == 0">
+                <h4>No Bookmarks to show.</h4>
+            </div>
+        </div>
+    </body>
+</html>

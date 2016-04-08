@@ -1,0 +1,22 @@
+html,
+body {
+  margin: auto; }
+
+.bookmark {
+  height: 150px !important;
+  text-align: center;
+  border: solid 1px #aaa;
+  border-radius: 20px; }
+  .bookmark img {
+    width: 50px;
+    height: 30px; }
+  .bookmark .actions {
+    height: 30px; }
+
+.close-btn {
+  margin-top: -30px; }
+
+.center-content {
+  margin-left: 40px; }
+
+/*# sourceMappingURL=style.css.map */
